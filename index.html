@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJINNI RADAR</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Share+Tech+Mono&display=swap');
+    body {
+      background-color: #000000ff;
+      font-family: 'Share Tech Mono';
+      color: #00ff00ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .button {
+      background-color: #00ff00ff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-family: Courier;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+    }
+
+    .button:hover {
+      background-color: #008000;
+      color: #ffffff;
+    }
+
+    #loading-container {
+      display: none;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+    }
+
+    #radar-logo {
+      animation: rotation 2s infinite linear;
+      margin-bottom: 10px;
+      filter: contrast(4);
+    }
+
+
+    @keyframes rotation {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(359deg);
+      }
+    }
+
+    #loading-bar {
+      width: 100%;
+      background-color: #008000;
+      padding: 3px;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    #loading-progress {
+      width: 0%;
+      height: 100%;
+      background-color: #00ff00ff;
+      position: absolute;
+    }
+
+    #looking-for-songs {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+
+    #loading-bar {
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <button class="button" onclick="startRadar()">Start DJINNI RADAR</button>
+    <div id="loading-container">
+      <img id="radar-logo" src="radar.png" alt="Radar Logo" width="200" height="200">
+      <div id="loading-bar">
+        <div id="loading-progress"></div>
+      </div>
+      <p id="looking-for-songs">DJINNI Radar is now looking for songs</p>
+    </div>
+  </div>
+
+  <script>
+    function startRadar() {
+      document.querySelector('.button').style.display = 'none';
+      document.getElementById('loading-container').style.display = 'block';
+      let progress = 0;
+      const interval = setInterval(function() {
+        progress += 1;
+        document.getElementById('loading-progress').style.width = progress + '%';
+        if (progress >= 100) {
+          clearInterval(interval);
+          // Insert your logic for searching songs here
+        }
+      }, 100);
+    }
+  </script>
+</body>
+</html>
